@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tendulkar | Full-Stack Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+    
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary: #4f46e5; /* Modern Indigo */
+            --primary-hover: #4338ca;
+            --danger: #ef4444;
+            --success: #10b981;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Hero Header Styling */
+        .hero-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero-banner h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+        }
+
+        .hero-banner p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .main-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        /* Project Grid & Cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        /* Beautiful Input Form Card styling */
+        .custom-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Modern Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            font-family: inherit;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background-color: #ffffff;
+            color: var(--text-main);
+            box-sizing: border-box;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background-color: var(--primary);
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-submit:active {
+            transform: scale(0.99);
+        }
+
+        /* Empty Database State */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            background: #f1f5f9;
+            border-radius: 12px;
+            border: 2px dashed #cbd5e1;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-banner">
+        <h1>Hi, I'm Tendulkar 👋</h1>
+        <p>Full Stack Developer • Node.js • MySQL • Frontend Specialist</p>
+    </header>
+
+    <div class="main-container">
+        
+        <section style="margin-bottom: 50px;">
+            <h2>🚀 Portfolio Showcase</h2>
+            <div id="projects" class="project-grid">
+                <p class="empty-state">Connecting to MySQL backend layer...</p>
+            </div>
+        </section>
+
+        <section class="custom-card">
+            <h2 style="margin-top: 0; margin-bottom: 24px;">➕ Document a New Project</h2>
+            
+            <div class="form-group">
+                <label for="title">Project Title</label>
+                <input type="text" id="title" class="form-control" placeholder="e.g., Enterprise E-Commerce Engine">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Detailed Description</label>
+                <textarea id="description" class="form-control" rows="4" placeholder="Detail the technical architecture, problem statement, and resolutions..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tech">Technologies Used (Separate with commas)</label>
+                <input type="text" id="tech" class="form-control" placeholder="e.g., React, Node.js, Express, MySQL">
+            </div>
+
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div>
+                    <label for="github">GitHub Repository Link</label>
+                    <input type="url" id="github" class="form-control" placeholder="https://github.com/yourusername/project">
+                </div>
+                <div>
+                    <label for="live">Live Deployment Address</label>
+                    <input type="url" id="live" class="form-control" placeholder="https://yourproject.com">
+                </div>
+            </div>
+
+            <button type="button" class="btn-submit" onclick="addProject()">Publish Project Record</button>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
