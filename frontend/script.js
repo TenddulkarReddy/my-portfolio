@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api/projects';
+const API_URL = 'https://my-portfolio-9n9a.onrender.com/api/projects';
 
 // 1. Fetch records and build modern card elements
 async function fetchProjects() {
