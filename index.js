@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// API route to get all projects from MySQL
+// 1. API route to get all projects from MySQL
 app.get('/api/projects', async (req, res) => {
   try {
     const projects = await Project.findAll();
@@ -18,7 +18,7 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
-// API route to create a project row
+// 2. API route to create a project row
 app.post('/api/projects', async (req, res) => {
   try {
     const newProject = await Project.create(req.body);
@@ -28,23 +28,14 @@ app.post('/api/projects', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
-
-sequelize.sync()
-  .then(() => {
-    console.log("🚀 MySQL Database & Tables Sync Complete!");
-    app.listen(PORT, () => console.log(`🌍 Server running smoothly on port ${PORT}`));
-  })
-  .catch(err => console.error("❌ Database synchronization failed:", err));
-
-// API route to delete a specific project row by its ID
+// 3. API route to delete a specific project row by its ID
 app.delete('/api/projects/:id', async (req, res) => {
   try {
     const projectId = req.params.id;
     const deleted = await Project.destroy({
       where: { id: projectId }
     });
-    
+
     if (deleted) {
       res.status(200).json({ message: "Project deleted successfully!" });
     } else {
@@ -54,3 +45,15 @@ app.delete('/api/projects/:id', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+// 4. Sync Database and Start Server at the end
+const PORT = process.env.PORT || 5000;
+
+sequelize.sync()
+  .then(() => {
+    console.log("🚀 MySQL Database & Tables Sync Complete!");
+    app.listen(PORT, () => console.log(`🌐 Server running smoothly on port ${PORT}`));
+  })
+  .catch(err => {
+    console.error("❌ Database synchronization failed:", err);
+  });
