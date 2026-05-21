@@ -45,4 +45,4 @@ sequelize.sync({ alter: true })
   .catch((err) => {
     console.error('Database synchronization failed:', err);
   });
-});
+
