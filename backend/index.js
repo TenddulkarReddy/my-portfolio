@@ -30,27 +30,19 @@ app.post('/api/projects', async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-sequelize.sync()
-  .then(() => {
-    console.log("🚀 MySQL Database & Tables Sync Complete!");
-    app.listen(PORT, () => console.log(`🌍 Server running smoothly on port ${PORT}`));
-  })
-  .catch(err => console.error("❌ Database synchronization failed:", err));
+// ... leave all your routes up here completely untouched ...
 
-// API route to delete a specific project row by its ID
-app.delete('/api/projects/:id', async (req, res) => {
-  try {
-    const projectId = req.params.id;
-    const deleted = await Project.destroy({
-      where: { id: projectId }
+sequelize.sync({ alter: true })
+  .then(() => {
+    console.log('MySQL Database & Tables Sync Complete!');
+
+    // Move your server startup inside here so Render doesn't shut it down!
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`Server running smoothly on port ${PORT}`);
     });
-    
-    if (deleted) {
-      res.status(200).json({ message: "Project deleted successfully!" });
-    } else {
-      res.status(404).json({ error: "Project not found" });
-    }
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  })
+  .catch((err) => {
+    console.error('Database synchronization failed:', err);
+  });
 });
