@@ -28,6 +28,21 @@ app.post('/api/projects', async (req, res) => {
   }
 });
 
+// API route to delete a project row by its unique ID
+app.delete('/api/projects/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleted = await Project.destroy({ where: { id: id } });
+        
+        if (deleted) {
+            return res.status(200).json({ message: "Project deleted successfully" });
+        }
+        return res.status(404).json({ error: "Project not found" });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 const PORT = process.env.PORT || 5000;
 
 // ... leave all your routes up here completely untouched ...
